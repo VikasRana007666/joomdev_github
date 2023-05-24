@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dist/output.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>New Multi Select</title>
+  </head>
+  <body>
+    <div class="max-w-screen-xl mx-auto">
+      <div class="my-16 flex justify-center">
+        <div>
+          <!-- Start -->
+          <div>
+            <label
+              for="combobox"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Assigned to</label
+            >
+            <div class="relative mt-2">
+              <input
+                id="combobox"
+                type="text"
+                class="w-full cursor-pointer rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                role="combobox"
+                aria-controls="options"
+                aria-expanded="false"
+              />
+
+              <button
+                id="toggle_button"
+                type="button"
+                class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
+                style="width: 100%"
+              >
+                <!-- <svg
+                  class="h-5 w-5 text-gray-400 z-20"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                    clip-rule="evenodd"
+                  />
+                </svg> -->
+                <button
+                  id="cancel_button"
+                  class="absolute hidden inset-y-0 right-0 hover:text-red-400 text-red-500 items-center rounded-r-md px-2 focus:outline-none"
+                >
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button
+                  id="down_arrow_button"
+                  class="absolute inset-y-0 right-0 hover:text-grey-400 text-grey-500 items-center rounded-r-md px-2 focus:outline-none"
+                >
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <button
+                  id="up_arrow_button"
+                  class="absolute hidden inset-y-0 right-0 hover:text-grey-400 text-grey-500 items-center rounded-r-md px-2 focus:outline-none"
+                >
+                  <i class="fa-solid fa-chevron-up"></i>
+                </button>
+              </button>
+
+              <ul
+                class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm hidden"
+                id="options"
+                role="listbox"
+              >
+                <!-- items -->
+                <li
+                  class="relative group cursor-pointer select-none py-2 pl-3 pr-9 hover:text-white hover:bg-indigo-600 text-gray-900"
+                  id="option-1"
+                  role="option"
+                  tabindex="-1"
+                >
+                  <!-- Selected: "font-semibold" -->
+                  <span
+                    class="block truncate selected-name group-hover:text-white"
+                    >Jack</span
+                  >
+
+                  <span
+                    class="absolute inset-y-0 right-0 text-indigo-600 group-hover:text-white items-center pr-4 checkmark hidden"
+                  >
+                    <svg
+                      class="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </li>
+
+                <li
+                  class="relative group cursor-pointer select-none py-2 pl-3 pr-9 hover:text-white hover:bg-indigo-600 text-gray-900"
+                  id="option-1"
+                  role="option"
+                  tabindex="-1"
+                >
+                  <!-- Selected: "font-semibold" -->
+                  <span
+                    class="block truncate selected-name group-hover:text-white"
+                    >John</span
+                  >
+
+                  <span
+                    class="absolute inset-y-0 right-0 text-indigo-600 group-hover:text-white items-center pr-4 checkmark hidden"
+                  >
+                    <svg
+                      class="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </li>
+
+                <li
+                  class="relative group cursor-pointer select-none py-2 pl-3 pr-9 hover:text-white hover:bg-indigo-600 text-gray-900"
+                  id="option-1"
+                  role="option"
+                  tabindex="-1"
+                >
+                  <!-- Selected: "font-semibold" -->
+                  <span
+                    class="block truncate selected-name group-hover:text-white"
+                    >Lisa</span
+                  >
+
+                  <span
+                    class="absolute inset-y-0 right-0 text-indigo-600 group-hover:text-white items-center pr-4 checkmark hidden"
+                  >
+                    <svg
+                      class="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </li>
+
+                <!-- More items... -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- End -->
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        var combobox = $("#combobox");
+        var options = $("#options");
+        var cancel_button = $("#cancel_button");
+        var down_arrow_button = $("#down_arrow_button");
+        var up_arrow_button = $("#up_arrow_button");
+
+        cancel_button.click(function (e) {
+          e.preventDefault();
+
+          options.find("li.selected").removeClass("selected");
+          options.find(".checkmark").addClass("hidden").removeClass("flex");
+          options.find(".selected-name").removeClass("font-bold");
+          combobox.val("");
+          cancel_button.addClass("hidden");
+          down_arrow_button.removeClass("hidden");
+          if (!options.hasClass("hidden")) {
+            combobox.toggleClass(
+              "ring-1 ring-inset ring-gray-300 ring-2 ring-indigo-600"
+            );
+          }
+          options.addClass("hidden");
+        });
+
+        combobox.on("input", function () {
+          var inputText = $(this).val();
+        });
+
+        // down arrow
+        down_arrow_button.click(function () {
+          console.log("dsfasdfa");
+          options.toggleClass("hidden");
+          combobox.toggleClass(
+            "ring-1 ring-inset ring-gray-300 ring-2 ring-indigo-600"
+          );
+          down_arrow_button.toggleClass("hidden");
+          up_arrow_button.toggleClass("hidden");
+        });
+
+        // up arrow
+        up_arrow_button.click(function () {
+          options.toggleClass("hidden");
+          combobox.toggleClass(
+            "ring-1 ring-inset ring-gray-300 ring-2 ring-indigo-600"
+          );
+          down_arrow_button.toggleClass("hidden");
+          up_arrow_button.toggleClass("hidden");
+        });
+
+        // toggle button
+        $("#toggle_button").click(function () {
+          options.toggleClass("hidden");
+          combobox.toggleClass(
+            "ring-1 ring-inset ring-gray-300 ring-2 ring-indigo-600"
+          );
+
+          if (cancel_button.hasClass("hidden")) {
+            down_arrow_button.toggleClass("hidden");
+            up_arrow_button.toggleClass("hidden");
+          }
+        });
+
+        options.on("click", "li", function () {
+          var option = $(this);
+          option.toggleClass("selected");
+          option.find(".checkmark").toggleClass("flex hidden");
+          option.find(".selected-name").toggleClass("font-bold");
+
+          var selectedOptions = options.find("li.selected");
+          var selectedValues = selectedOptions
+            .map(function () {
+              return $(this).find(".block").text();
+            })
+            .get();
+
+          combobox.val(
+            selectedValues.length > 0 ? selectedValues.length + " selected" : ""
+          );
+
+          if (selectedValues.length > 0) {
+            cancel_button.removeClass("hidden");
+            down_arrow_button.addClass("hidden");
+            up_arrow_button.addClass("hidden");
+          } else {
+            cancel_button.addClass("hidden");
+            down_arrow_button.removeClass("hidden");
+            // up_arrow_button.addClass("hidden");
+          }
+        });
+
+        $(document).click(function (event) {
+          var targetElement = $(event.target);
+          if (
+            !targetElement.closest("#toggle_button").length &&
+            !targetElement.closest("#options").length &&
+            !targetElement.closest("#down_arrow_button").length
+          ) {
+            if (!options.hasClass("hidden")) {
+              options.addClass("hidden");
+              combobox.toggleClass(
+                "ring-1 ring-inset ring-gray-300 ring-2 ring-indigo-600"
+              );
+            }
+
+            if (cancel_button.hasClass("hidden")) {
+              down_arrow_button.removeClass("hidden");
+              up_arrow_button.addClass("hidden");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
