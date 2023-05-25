@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dist/output.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Search</title>
+  </head>
+  <body>
+    <div class="max-w-screen-xl mx-auto">
+      <div class="my-16 flex justify-center">
+        <!-- fasdfasdfasdfasdf -->
+        <div>
+          <!-- Start -->
+          <button
+            id="search-button"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+          >
+            Open Search
+          </button>
+
+          <div
+            id="search-modal"
+            class="fixed inset-0 items-center justify-center bg-gray-900 bg-opacity-50 hidden"
+          >
+            <div class="bg-white w-1/2 p-4 rounded-lg">
+              <div>
+                <label
+                  for="search"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                  >Quick search</label
+                >
+                <div class="relative mt-2 flex items-center">
+                  <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    class="block w-full rounded-md border-0 pl-4 py-1.5 pr-8 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                    <button
+                      id="search-submit"
+                      class="inline-flex items-center rounded text-gray-400"
+                    >
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="search-results" class="mt-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End -->
+        </div>
+        <!-- fasdfasdfasdfasdf -->
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Show the search modal when the search button is clicked
+        $("#search-button").click(function () {
+          // $("#search-modal").fadeIn();
+          $("#search-modal").toggleClass("flex hidden");
+        });
+
+        $("#search-modal, #close-button").click(function () {
+          $("#search-modal").toggleClass("flex hidden");
+        });
+
+        // Prevent the modal from closing when clicking inside the modal content
+        $("#search-modal .bg-white").click(function (event) {
+          event.stopPropagation();
+        });
+
+        $("#search").on("input", function () {
+          var searchText = $(this).val();
+
+          // Dummy live search result
+          var liveSearchResult = ["Result 1", "Result 2", "Result 3"];
+
+          var resultsContainer = $("#search-results");
+          resultsContainer.empty();
+          if (searchText !== "") {
+            $.each(liveSearchResult, function (index, result) {
+              if (result.toLowerCase().includes(searchText.toLowerCase())) {
+                var resultItem = $("<p>").text(result);
+                resultsContainer.append(resultItem);
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

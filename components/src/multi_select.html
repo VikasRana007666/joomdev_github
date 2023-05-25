@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dist/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="max-w-screen-xl mx-auto">
+      <div class="m-4">
+        <!-- Start -->
+        <div class="relative">
+          <input type="hidden" id="selected-values" />
+          <div class="relative inline-block w-64">
+            <div class="relative">
+              <button
+                type="button"
+                class="w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 text-left focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                id="dropdown-toggle"
+              >
+                Select options
+              </button>
+              <div
+                id="dropdown-menu"
+                class="absolute right-0 mt-2 h-32 overflow-y-auto w-64 rounded-md bg-white shadow-lg z-10 hidden"
+              >
+                <ul class="py-1">
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 1
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 2
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 3
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 4
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 5
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 6
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 7
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 8
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><div class="px-2 rounded-lg m-1 hover:bg-blue-100">
+                        Option 9
+                      </div>
+                    </a>
+                  </li>
+                  <!-- Add more options as needed -->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <ul id="selected-values-list" class="mt-2">
+            <!-- Selected values will be dynamically added here -->
+          </ul>
+        </div>
+        <!-- End -->
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#dropdown-toggle").click(function () {
+          $("#dropdown-menu").toggle();
+        });
+
+        $(".dropdown-item").click(function () {
+          var value = $(this).text();
+          var optionId = $(this).closest("li").index();
+
+          console.log(optionId);
+          if ($(this).hasClass("selected")) {
+            $(this).removeClass("selected");
+            $(
+              "#selected-values-list li[data-option='" + optionId + "']"
+            ).remove();
+          } else {
+            $(this).addClass("selected");
+            $("#selected-values-list").append(
+              '<li data-option="' +
+                optionId +
+                '">' +
+                value +
+                '<button type="button" class="mx-2 hover:text-red-400 remove-btn"><i class="fa-solid fa-xmark"></i></button></li>'
+            );
+          }
+
+          var selectedValues = $(".dropdown-item.selected")
+            .map(function () {
+              return $(this).text();
+            })
+            .get();
+          $("#selected-values").val(selectedValues.join(", "));
+        });
+
+        $(document).on("click", ".remove-btn", function () {
+          var optionId = $(this).parent().data("option");
+          $("#dropdown-menu li:eq(" + optionId + ")").removeClass("selected");
+          $(this).parent().remove();
+          var selectedValues = $(".dropdown-item.selected")
+            .map(function () {
+              return $(this).text();
+            })
+            .get();
+          $("#selected-values").val(selectedValues.join(", "));
+        });
+      });
+    </script>
+  </body>
+</html>
